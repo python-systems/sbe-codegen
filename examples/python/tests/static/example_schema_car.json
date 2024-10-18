@@ -1,0 +1,80 @@
+{
+  "serial_number": 1234,
+  "model_year": 2013,
+  "available": 0,
+  "code": 0,
+  "some_numbers": [1, 2, 3, 4],
+  "vehicle_code": "abcdef",
+  "extras": {
+    "sun_roof": false,
+    "sports_pack": true,
+    "cruise_control": true
+  },
+  "engine": {
+    "capacity": 2000,
+    "num_cylinders": 4,
+    "manufacturer_code": "123",
+    "efficiency": 35,
+    "booster_enabled": 0,
+    "booster": {
+      "boost_type": 0,
+      "horse_power": 200
+    }
+  },
+  "fuel_figures": [
+    {
+      "speed": 30,
+      "mpg": 35.9,
+      "usage_description": "Urban Cycle"
+    },
+    {
+      "speed": 55,
+      "mpg": 49.0,
+      "usage_description": "Combined Cycle"
+    },
+    {
+      "speed": 75,
+      "mpg": 40.0,
+      "usage_description": "Highway Cycle"
+    }
+  ],
+  "performance_figures": [
+    {
+      "octane_rating": 95,
+      "acceleration": [
+        {
+          "mph": 30,
+          "seconds": 4.0
+        },
+        {
+          "mph": 60,
+          "seconds": 7.5
+        },
+        {
+          "mph": 100,
+          "seconds": 12.2
+        }
+      ]
+    },
+    {
+      "octane_rating": 99,
+      "acceleration": [
+        {
+          "mph": 30,
+          "seconds": 3.8
+        },
+        {
+          "mph": 60,
+          "seconds": 7.1
+        },
+        {
+          "mph": 100,
+          "seconds": 11.8
+        }
+      ]
+    }
+  ],
+  "manufacturer": "Honda",
+  "model": "Civic VTi",
+  "activation_code": "abcdef"
+}

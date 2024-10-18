@@ -1,0 +1,26 @@
+[package]
+name = "sbe-codegen"
+version = "0.1.0"
+license = "MIT"
+description = "Performance-oriented multi-language SBE codec generator"
+authors = ["Python Systems <python-systems@proton.me>"]
+readme = "README.md"
+homepage = "https://github.com/python-systems/sbe-codegen"
+repository = "https://github.com/python-systems/sbe-codegen"
+keywords = ["sbe", "encoding", "codegen", "generator", "performance"]
+categories = ["command-line-utilities", "encoding", "parser-implementations"]
+edition = "2021"
+rust-version = "1.73.0"
+
+[dependencies]
+indoc = "^2.0.0"
+anyhow = "^1.0.0"
+genco = "^0.17.0"
+hard-xml = "^1.27.0"
+convert_case = "^0.6.0"
+clap = { version = "4.0.0", features = ["derive"]}
+
+xml-include = "^0.1"
+
+[build-dependencies]
+rustc_version = "^0.4"
