@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+
+jobs:
+  test:
+    name: Test crate
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout repository
+      - uses: dtolnay/rust-toolchain@master
+        name: Set up toolchain
+        with:
+          toolchain: nightly
+          components: rustfmt, clippy
+      - uses: taiki-e/install-action@cargo-llvm-cov
+        name: Install cargo llvm-cov
+      - uses: Swatinem/rust-cache@v2
+        name: Cache toolchain and dependencies
+      - run: cargo test --all-features
+        name: Run unit tests
+      - run: cargo run -- --schema ./examples/example-schema.xml --language rust --project-name example --project-path ./examples/rust --with-test-deps --format
+        name: Generate Rust codecs
+      - run: cargo test --manifest-path=examples/rust/Cargo.toml --all-features
+        name: Run Rust codec tests
+      - run: cargo run -- --schema ./examples/example-schema.xml --language python --project-name example --project-path ./examples/python --with-test-deps --format
+        name: Generate Python codecs
+      - run: cd examples/python && pipx install poetry && poetry install --no-root && poetry run maturin dev && poetry run pytest
+        name: Run Python codec tests
+
+  lint:
+    name: Check code style
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout repository
+      - uses: dtolnay/rust-toolchain@master
+        name: Set up toolchain
+        with:
+          toolchain: nightly
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+        name: Cache toolchain and dependencies
+      - run: cargo fmt --all -- --check
+        name: Check code with cargo fmt
+      - run: cargo clippy --all-targets -- -D warnings
+        name: Check code with cargo clippy

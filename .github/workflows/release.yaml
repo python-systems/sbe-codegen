@@ -1,0 +1,23 @@
+name: Publish release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish-crate:
+    name: Publish crate
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout repository
+      - uses: dtolnay/rust-toolchain@nightly
+        name: Set up toolchain
+      - uses: Swatinem/rust-cache@v2
+        name: Cache toolchain and dependencies
+      - uses: katyo/publish-crates@v2
+        name: Publish crate
+        with:
+          registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
